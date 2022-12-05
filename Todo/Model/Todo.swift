@@ -32,6 +32,14 @@ class TodoDataStore {
         }
     }
     
+    func fetch() -> [Todo] {
+        removePastTodo()
+        
+        let todo = realm.objects(Todo.self)
+        
+        return todo.compactMap { $0 }
+    }
+    
     func update(_ todo: Todo) {
 //        do {
 //            try realm.write {
@@ -53,7 +61,19 @@ class TodoDataStore {
     }
     
     func removePastTodo() {
+        let todo = realm.objects(Todo.self)
+        let list = todo.compactMap { $0 }.filter { $0.date!.timeIntervalSinceNow < 0 }
+        let realm = try! Realm()
         
+        do {
+            try realm.write {
+                list.forEach {
+                    realm.delete($0)
+                }
+            }
+        } catch {
+            print("erroree")
+        }
     }
 }
 

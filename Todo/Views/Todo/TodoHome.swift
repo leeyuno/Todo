@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+import RealmSwift
+
 struct TodoHome: View {
     @State var presentingAddView = false
+    @State var todoList: [Todo] = TodoDataStore.shared.fetch()
     
     var body: some View {
         NavigationView {
@@ -26,7 +29,6 @@ struct TodoHome: View {
                         }
                     }
                 }
-//                .navigationTitle("TODO")
                 .toolbar {
                     Button {
                         self.presentingAddView = true
