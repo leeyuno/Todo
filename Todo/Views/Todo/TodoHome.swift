@@ -30,15 +30,24 @@ struct TodoHome: View {
                     }
                 }
                 .toolbar {
-                    Button {
-                        self.presentingAddView = true
-                    } label: {
-                        Image(systemName: "plus.rectangle")
-                            .resizable()
-                            .padding([.trailing], 10)
-                            .font(.title2)
-                    }.sheet(isPresented: $presentingAddView) {
-                        AddView()
+                    HStack {
+                        NavigationLink(destination: TitleAddView()) {
+                            Image(systemName: "plus.rectangle")
+                                .resizable()
+                                .padding([.trailing], 10)
+                                .font(.title2)
+                        }.navigationBarTitle("Navigation")
+                        
+                        Button {
+                            self.presentingAddView = true
+                        } label: {
+                            Image(systemName: "plus.rectangle")
+                                .resizable()
+                                .padding([.trailing], 10)
+                                .font(.title2)
+                        }.sheet(isPresented: $presentingAddView) {
+                            TitleAddView()
+                        }
                     }
                 }
             }

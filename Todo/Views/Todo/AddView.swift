@@ -27,6 +27,7 @@ class TextBindingManager: ObservableObject {
 struct AddView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var title = TextBindingManager(limit: 15)
+    
     @State var type = ""
     private var types = ["회사", "학교", "개인", "기타"]
     private var priority = ["높음", "보통", "낮음"]
@@ -82,6 +83,12 @@ struct AddView: View {
     
     func createTODO() {
         let todo = Todo()
+        
+        guard title.text == "" else {
+            
+            return
+        }
+        
         todo.title = title.text
         todo.type = selectedType
         todo.priority = selectedPriority
