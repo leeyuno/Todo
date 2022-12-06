@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TitleAddView: View {
     @ObservedObject var title = TextBindingManager(limit: 15)
+//    @State var title: String = ""
+    @State var todoItem = Todo()
     @State var isEditingTitle: Bool = false
     @State var presentingNextView: Bool = false
     
@@ -30,18 +32,11 @@ struct TitleAddView: View {
                 Spacer()
             }
             .toolbar {
-                NavigationLink(destination: TypeAddView()) {
+                NavigationLink(destination: TypeAddView(todoItem: todoItem)) {
                     Text("다음")
-                }.navigationBarTitle("일정")
-//                Button {
-//                    self.presentingNextView = true
-//                } label: {
-//                    Text("다음").padding([.trailing], 10).font(.headline)
-//                }.sheet(isPresented: $presentingNextView) {
-//
-//
-//                }
+                }
             }
+            .navigationBarTitle("일정")
         }
     }
 }

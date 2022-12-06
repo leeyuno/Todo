@@ -31,7 +31,7 @@ struct TodoHome: View {
                 }
                 .toolbar {
                     HStack {
-                        NavigationLink(destination: TitleAddView()) {
+                        NavigationLink(destination: AddView()) {
                             Image(systemName: "plus.rectangle")
                                 .resizable()
                                 .padding([.trailing], 10)

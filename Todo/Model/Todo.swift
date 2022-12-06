@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 import RealmSwift
 
@@ -20,7 +21,14 @@ class TodoDataStore {
     static let shared = TodoDataStore()
     let realm = try! Realm()
     
+//    @ObservedObject var todoItem: Todo = Todo()
+    var todoItem: Todo = Todo()
+    
+//    var todoItem: Todo?
+    
     func write(_ todo: Todo, completion: (Bool) -> ()) {
+        print(todo)
+//        let realm = try! Realm()
         do {
             try realm.write {
                 realm.add(todo)
@@ -32,9 +40,28 @@ class TodoDataStore {
         }
     }
     
+    func write(_ completion: (Bool) -> ()) {
+        print(todoItem)
+//        print(todo)
+//        guard let todo = todoItem else {
+//            completion(false)
+//            return
+//        }
+//        do {
+//            try realm.write {
+//                realm.add(todo)
+//                completion(true)
+//            }
+//        } catch {
+//            completion(false)
+//            print("Write error")
+//        }
+        completion(true)
+    }
+    
     func fetch() -> [Todo] {
         removePastTodo()
-        
+//        let realm = try! Realm()
         let todo = realm.objects(Todo.self)
         
         return todo.compactMap { $0 }
@@ -51,6 +78,7 @@ class TodoDataStore {
     }
     
     func delete(_ todo: Todo) {
+//        let realm = try! Realm()
         do {
             try realm.write {
                 realm.delete(todo)
@@ -63,7 +91,7 @@ class TodoDataStore {
     func removePastTodo() {
         let todo = realm.objects(Todo.self)
         let list = todo.compactMap { $0 }.filter { $0.date!.timeIntervalSinceNow < 0 }
-        let realm = try! Realm()
+//        let realm = try! Realm()
         
         do {
             try realm.write {
