@@ -1,12 +1,12 @@
 //
-//  Todos.swift
+//  TodosCore.swift
 //  Todos
 //
-//  Created by 이윤오 on 2023/10/17.
+//  Created by 이윤오 on 2023/11/07.
 //
 
 import ComposableArchitecture
-@preconcurrency import SwiftUI
+import SwiftUI
 
 enum Filter: LocalizedStringKey, CaseIterable, Hashable {
     case all = "All"
@@ -16,9 +16,10 @@ enum Filter: LocalizedStringKey, CaseIterable, Hashable {
 
 struct Todos: Reducer {
     struct State: Equatable {
+        var titleState = AddTitle.State()
+        
         @BindingState var filter: Filter = .all
         var todos: IdentifiedArrayOf<Todo.State> = []
-        var addTitleState = AddTitle.State()
         
         var filteredTodos: IdentifiedArrayOf<Todo.State> {
             switch filter {
@@ -97,93 +98,5 @@ struct Todos: Reducer {
         .forEach(\.todos, action: /Action.todo(id:action:)) {
             Todo()
         }
-    }
-}
-
-
-struct AppView: View {
-    let store: StoreOf<Todos>
-    
-    struct ViewState: Equatable {
-        @BindingViewState var filter: Filter
-        
-        init(store: BindingViewStore<Todos.State>) {
-            self._filter = store.$filter
-        }
-    }
-    
-    var body: some View {
-        WithViewStore(self.store, observe: ViewState.init) { viewStore in
-            NavigationStack {
-                VStack(alignment: .leading) {
-                    Picker("Filter", selection: viewStore.$filter.animation()) {
-                        ForEach(Filter.allCases, id: \.self) { filter in
-                            Text(filter.rawValue).tag(filter)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal)
-                    
-                    
-                    List {
-                        ForEachStore(
-                            self.store.scope(state: \.filteredTodos, action: { .todo(id: $0, action: $1) })
-                        ) { store in
-                            NavigationLink {
-                                
-                            } label: {
-                                TodoView(store: store)
-                            }
-                        }
-                        .onDelete { viewStore.send(.delete($0)) }
-                        .onMove { viewStore.send(.move($0, $1)) }
-                    }
-                    .listStyle(.plain)
-                }
-                .navigationTitle("Todos")
-                .toolbar {
-                    NavigationLink {
-                        AddTitleView(store: self.store.scope(
-                            state: \.addTitleState,
-                            action: Todos.Action.addTodoButtonTapped
-                        )
-                        )
-                    } label: {
-                        Text("할일")
-                    }
-                }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
-            }
-        }
-    }
-}
-
-extension IdentifiedArray where ID == Todo.State.ID, Element == Todo.State {
-    static let mock: Self = [
-        Todo.State(
-            description: "Check Mail",
-            id: UUID(),
-            isComplete: false
-        ),
-        Todo.State(
-            description: "Buy Milk",
-            id: UUID(),
-            isComplete: false
-        ),
-        Todo.State(
-            description: "Call Mom",
-            id: UUID(),
-            isComplete: false
-        )
-    ]
-}
-
-struct AppView_Proviews: PreviewProvider {
-    static var previews: some View {
-        AppView(
-            store: Store(initialState: Todos.State(todos: .mock)) {
-                Todos()
-            }
-        )
     }
 }

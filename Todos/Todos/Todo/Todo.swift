@@ -8,22 +8,6 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct Todo: Reducer {
-    struct State: Equatable, Identifiable {
-        @BindingState var description = ""
-        let id: UUID
-        @BindingState var isComplete = false
-    }
-    
-    enum Action: BindableAction, Equatable, Sendable {
-        case binding(BindingAction<State>)
-    }
-    
-    var body: some Reducer<State, Action> {
-        BindingReducer()
-    }
-}
-
 struct TodoView: View {
     let store: StoreOf<Todo>
     
