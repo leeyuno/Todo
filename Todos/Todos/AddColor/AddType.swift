@@ -38,26 +38,24 @@ struct AddTypeView: View {
     }
     
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            NavigationStack {
-                VStack(alignment: .center, spacing: 20) {
-                    Text("할일을 색깔로 표현해보세요!")
-                    SquareColorPickerView(colorValue: self.viewStore.$color)
-                    
-                    Spacer()
-                }.toolbar {
-                    NavigationLink {
-                        AddTimeView(
-                            store: self.timeStore
-                        )
-                    } label: {
-                        Text("중요도")
-                    }
+        NavigationStack {
+            VStack(alignment: .center, spacing: 20) {
+                Text("할일을 색깔로 표현해보세요!")
+                SquareColorPickerView(colorValue: self.viewStore.$color)
+                
+                Text(viewStore.item.title)
+                Spacer()
+            }.toolbar {
+                NavigationLink {
+                    AddTimeView(
+                        store: self.timeStore
+                    )
+                } label: {
+                    Text("중요도")
                 }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
             }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
         }
-        
     }
 }
 

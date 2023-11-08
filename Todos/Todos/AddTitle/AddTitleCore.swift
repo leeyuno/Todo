@@ -10,26 +10,39 @@ import SwiftUI
 
 struct AddTitle: Reducer {
     struct State: Equatable {
-        @BindingState var title = ""
+        @BindingState var text = ""
+        var title: String = ""
         var typeState = AddType.State()
         var item = TodoEntity()
     }
     
     enum Action: BindableAction, Equatable, Sendable {
         case binding(BindingAction<State>)
+        case changeTitle(_ newValue: String)
         case next(AddType.Action)
     }
     
     var body: some Reducer<State, Action> {
         BindingReducer()
         
-//        Reduce { state, action in
-//            switch action {
-//            case .binding:
-//                return .none
-//            case .next:
-//                return .none
-//            }
-//        }
+        Reduce { state, action in
+            switch action {
+            case .binding:
+                return .none
+            case let .changeTitle(title):
+                
+                state.title = title
+                
+                return .none
+            case .next:
+                state.item = TodoEntity(value: ["title": state.text])
+                state.typeState = AddType.State(item: state.item)
+                return .none
+            }
+        }
+        
+        Scope(state: \.typeState, action: /Action.next) {
+            AddType()
+        }
     }
 }

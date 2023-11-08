@@ -98,5 +98,9 @@ struct Todos: Reducer {
         .forEach(\.todos, action: /Action.todo(id:action:)) {
             Todo()
         }
+        
+        Scope(state: \.titleState, action: /Action.addTodoButtonTapped) {
+            AddTitle()
+        }
     }
 }

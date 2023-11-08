@@ -24,9 +24,15 @@ struct AddTitleView: View {
                 
                 TextField(
                     "할일을 입력해주세요",
-                    text: self.viewStore.$title
+                    text: self.viewStore.$text
+//                    text: Binding(
+//                        get: { self.viewStore.title },
+//                        set: { self.viewStore.send(.changeTitle($0)) }
+//                    )
                 )
                 .padding()
+                
+                Spacer()
             }
         }
         .toolbar {

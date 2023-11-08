@@ -31,6 +31,9 @@ struct AddType: Reducer {
             case .binding:
                 return .none
             case .next:
+                
+                
+                state.timeState = AddTime.State(item: state.item)
                 return .none
             }
         }
