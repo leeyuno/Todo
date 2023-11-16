@@ -8,15 +8,28 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct TodoView: View {
-    let store: StoreOf<Todo>
+struct TodoItem: View {
+    var todo: TodoEntity
+    
+    init(_ todo: TodoEntity) {
+        self.todo = todo
+    }
     
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            HStack {
-                TextField("Untitled Todo", text: viewStore.$description)
+        HStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(todo.title)
+                    .font(.system(size: 20))
+                    .bold()
+                    .lineLimit(1)
+                Text(todo.date, style: .date)
+                    .font(.system(size: 16))
+                    .padding(.top, 12)
             }
-            .foregroundColor(viewStore.isComplete ? .gray : nil)
+            Spacer()
         }
+        .padding()
+        .background(Color(todo.color))
+        .cornerRadius(15)
     }
 }

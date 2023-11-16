@@ -32,11 +32,12 @@ struct AddTitle: Reducer {
             case let .changeTitle(title):
                 
                 state.title = title
+                state.typeState = AddType.State(title: state.title)
                 
                 return .none
             case .next:
-                state.item = TodoEntity(value: ["title": state.text])
-                state.typeState = AddType.State(item: state.item)
+//                state.typeState = AddType.State(item: state.item, title: state.title)
+                
                 return .none
             }
         }

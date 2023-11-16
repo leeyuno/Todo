@@ -13,16 +13,15 @@ struct SquareColorPickerView: View {
     @Binding var colorValue: Color
     
     var body: some View {
-        
         colorValue
             .frame(width: 40, height: 40, alignment: .center)
             .cornerRadius(10.0)
-            .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.white, style: StrokeStyle(lineWidth: 5)))
-            .padding(10)
+            .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.white, style: StrokeStyle(lineWidth: 3)))
+            .padding(12)
             .background(AngularGradient(gradient: Gradient(colors: [.red,.yellow,.green,.blue,.purple,.pink]), center:.center).cornerRadius(20.0))
             .overlay(ColorPicker("", selection: $colorValue).labelsHidden().opacity(0.015))
             .shadow(radius: 5.0)
-
+        
     }
 }
 
@@ -39,12 +38,110 @@ struct AddTypeView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .center, spacing: 20) {
-                Text("할일을 색깔로 표현해보세요!")
-                SquareColorPickerView(colorValue: self.viewStore.$color)
+            ZStack {
+                viewStore.color
+                    .animation(.default)
+                    .edgesIgnoringSafeArea(.all)
                 
-                Text(viewStore.item.title)
-                Spacer()
+                VStack(alignment: .center, spacing: 20) {
+                    Text("할일을 색깔로 표현해보세요!").font(.title2).bold()
+//                    SquareColorPickerView(colorValue: self.viewStore.$color)
+//                        .frame(height: 50)
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        
+                        VStack {
+                            Circle()
+                                .frame(
+                                    width: viewStore.color == Color.blue ? 60 : 50,
+                                    height: viewStore.color == Color.blue ? 60 : 50)
+                                .foregroundColor(Color.blue)
+                                .overlay {
+                                    Circle()
+                                        .stroke(lineWidth: 2)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    viewStore.send(.changeColor(Color.blue))
+                                }
+                            
+                            Circle()
+                                .frame(
+                                    width: viewStore.color == Color.pink ? 60 : 50,
+                                    height: viewStore.color == Color.pink ? 60 : 50)
+                                .foregroundColor(Color.pink)
+                                .overlay {
+                                    Circle()
+                                        .stroke(lineWidth: 2)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    viewStore.send(.changeColor(Color.pink))
+                                }
+                            
+                            Circle()
+                                .frame(
+                                    width: viewStore.color == Color.yellow ? 60 : 50,
+                                    height: viewStore.color == Color.yellow ? 60 : 50)
+                                .foregroundColor(Color.yellow)
+                                .overlay {
+                                    Circle()
+                                        .stroke(lineWidth: 2)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    viewStore.send(.changeColor(Color.yellow))
+                                }
+                            
+                            Circle()
+                                .frame(
+                                    width: viewStore.color == Color.green ? 60 : 50,
+                                    height: viewStore.color == Color.green ? 60 : 50)
+                                .foregroundColor(Color.green)
+                                .overlay {
+                                    Circle()
+                                        .stroke(lineWidth: 2)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    viewStore.send(.changeColor(Color.green))
+                                }
+                            
+                            Circle()
+                                .frame(
+                                    width: viewStore.color == Color.orange ? 60 : 50,
+                                    height: viewStore.color == Color.orange ? 60 : 50)
+                                .foregroundColor(Color.red)
+                                .overlay {
+                                    Circle()
+                                        .stroke(lineWidth: 2)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    viewStore.send(.changeColor(Color.orange))
+                                }
+                            
+                            Circle()
+                                .frame(
+                                    width: viewStore.color == Color.purple ? 60 : 50,
+                                    height: viewStore.color == Color.purple ? 60 : 50)
+                                .foregroundColor(Color.purple)
+                                .overlay {
+                                    Circle()
+                                        .stroke(lineWidth: 2)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    viewStore.send(.changeColor(Color.purple))
+                                }
+                        }
+                        .animation(.easeInOut, value: viewStore.color)
+                        .frame(width: 50)
+                    }
+                    .padding([.trailing, .bottom], 25)
+                }
+                
             }.toolbar {
                 NavigationLink {
                     AddTimeView(
@@ -54,7 +151,6 @@ struct AddTypeView: View {
                     Text("중요도")
                 }
             }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
         }
     }
 }

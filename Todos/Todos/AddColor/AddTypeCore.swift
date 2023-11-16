@@ -12,6 +12,7 @@ struct AddType: Reducer {
     struct State: Equatable {
         @BindingState var color: Color = .yellow
         var item = TodoEntity()
+        var title: String = ""
         var timeState = AddTime.State()
         var outputColor: Color = .yellow
     }
@@ -19,6 +20,7 @@ struct AddType: Reducer {
     enum Action: BindableAction, Equatable, Sendable {
         case binding(BindingAction<State>)
         case next(AddTime.Action)
+        case changeColor(Color)
     }
     
     var body: some Reducer<State, Action> {
@@ -30,10 +32,11 @@ struct AddType: Reducer {
                 return .none
             case .binding:
                 return .none
+            case let .changeColor(color):
+                state.color = color
+                return .none
             case .next:
                 
-                
-                state.timeState = AddTime.State(item: state.item)
                 return .none
             }
         }

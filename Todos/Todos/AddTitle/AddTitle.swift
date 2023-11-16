@@ -9,6 +9,8 @@ import SwiftUI
 import ComposableArchitecture
 
 struct AddTitleView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     let store: Store<AddTitle.State, AddTitle.Action>
     @ObservedObject var viewStore: ViewStore<AddTitle.State, AddTitle.Action>
     
@@ -21,14 +23,16 @@ struct AddTitleView: View {
         NavigationStack {
             VStack(alignment: .center, spacing: 20) {
                 Text("어떤 계획이 있으신가요?")
+                    .font(.title2)
+                    .bold()
+                    .shadow(color: colorScheme == .dark ? .gray : .gray, radius: 0.4)
                 
                 TextField(
                     "할일을 입력해주세요",
-                    text: self.viewStore.$text
-//                    text: Binding(
-//                        get: { self.viewStore.title },
-//                        set: { self.viewStore.send(.changeTitle($0)) }
-//                    )
+                    text: Binding(
+                        get: { self.viewStore.title },
+                        set: { self.viewStore.send(.changeTitle($0)) }
+                    )
                 )
                 .padding()
                 
@@ -44,7 +48,6 @@ struct AddTitleView: View {
                 Text("중요도")
             }
         }
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
     }
 }
 

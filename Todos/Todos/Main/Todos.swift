@@ -30,17 +30,15 @@ struct AppView: View {
                 
                 
                 List {
-                    ForEachStore(
-                        self.store.scope(state: \.filteredTodos, action: { .todo(id: $0, action: $1) })
-                    ) { store in
-                        NavigationLink {
-                            
-                        } label: {
-                            TodoView(store: store)
+                    ForEach(viewStore.todos, id: \.id) { todo in
+                        if !todo.isInvalidated && !todo.isFrozen {
+                            NavigationLink {
+                                AddTitleView(store: titleStore)
+                            } label: {
+                                TodoItem(todo)
+                            }
                         }
-                    }
-                    .onDelete { store.send(.delete($0)) }
-                    .onMove { store.send(.move($0, $1)) }
+
                 }
                 .listStyle(.plain)
             }
@@ -52,7 +50,6 @@ struct AppView: View {
                     Text("할일")
                 }
             }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
         }
     }
 }
@@ -86,10 +83,10 @@ extension AppView {
     }
 }
 
-struct AppView_Proviews: PreviewProvider {
-    static var previews: some View {
-        AppView(store: Store(initialState: Todos.State(todos: .mock), reducer: {
-            Todos()
-        }))
-    }
-}
+//struct AppView_Proviews: PreviewProvider {
+//    static var previews: some View {
+//        AppView(store: Store(initialState: Todos.State(todos: .mock), reducer: {
+//            Todos()
+//        }))
+//    }
+//}
