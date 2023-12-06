@@ -20,7 +20,7 @@ struct AddType: Reducer {
     enum Action: BindableAction, Equatable, Sendable {
         case binding(BindingAction<State>)
         case next(AddTime.Action)
-        case changeColor(Color)
+        case changeColor(_ newValue: Color)
     }
     
     var body: some Reducer<State, Action> {
@@ -34,11 +34,16 @@ struct AddType: Reducer {
                 return .none
             case let .changeColor(color):
                 state.color = color
+                state.timeState = AddTime.State(color: color, title: state.title)
                 return .none
             case .next:
                 
                 return .none
             }
+        }
+        
+        Scope(state: \.timeState, action: /Action.next) {
+            AddTime()
         }
     }
 }

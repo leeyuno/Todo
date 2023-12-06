@@ -46,6 +46,7 @@ struct AddTitleView: View {
                 )
             } label: {
                 Text("중요도")
+                    .foregroundColor(.white)
             }
         }
     }

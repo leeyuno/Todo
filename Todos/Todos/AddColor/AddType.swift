@@ -44,7 +44,7 @@ struct AddTypeView: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack(alignment: .center, spacing: 20) {
-                    Text("할일을 색깔로 표현해보세요!").font(.title2).bold()
+                    Text("\"\(self.viewStore.title)\" 색깔로 구분해보세요!").font(.title2).bold()
 //                    SquareColorPickerView(colorValue: self.viewStore.$color)
 //                        .frame(height: 50)
                     Spacer()

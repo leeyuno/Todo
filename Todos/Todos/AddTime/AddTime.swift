@@ -19,8 +19,12 @@ struct AddTimeView: View {
     
     var body: some View {
         NavigationStack {
+            viewStore.color
+                .animation(.default)
+                .edgesIgnoringSafeArea(.all)
+            
             VStack(alignment: .center, spacing: 20) {
-                Text("언제 할까요?")
+                Text("\(viewStore.title) 언제 할까요?").font(.title2).foregroundColor(.white)
                 DatePicker(
                     "Do it",
                     selection: self.viewStore.$date,

@@ -11,6 +11,8 @@ import SwiftUI
 struct AddTime: Reducer {
     struct State: Equatable {
 //        @ObservedObject var item = TodoEntity()
+        @BindingState var color: Color = .yellow
+        var title: String = ""
         var item = TodoEntity()
         @BindingState var date = Date()
     }

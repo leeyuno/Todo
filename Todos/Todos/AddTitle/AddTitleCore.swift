@@ -32,7 +32,7 @@ struct AddTitle: Reducer {
             case let .changeTitle(title):
                 
                 state.title = title
-                state.typeState = AddType.State(title: state.title)
+                state.typeState = AddType.State(title: title)
                 
                 return .none
             case .next:

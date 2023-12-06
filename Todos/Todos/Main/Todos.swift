@@ -38,7 +38,7 @@ struct AppView: View {
                                 TodoItem(todo)
                             }
                         }
-
+                    }
                 }
                 .listStyle(.plain)
             }
