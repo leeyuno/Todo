@@ -34,7 +34,7 @@ struct AddType: Reducer {
                 return .none
             case let .changeColor(color):
                 state.color = color
-                state.timeState = AddTime.State(color: color, title: state.title)
+                state.timeState = AddTime.State(color: color.description, title: state.title)
                 return .none
             case .next:
                 

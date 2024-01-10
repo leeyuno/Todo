@@ -28,6 +28,11 @@ struct Todos: Reducer {
         case delete(IndexSet)
     }
     
+    @Dependency(\.numberFact) var numberFact
+    func reduce(into state: inout State, action: Action) -> Effect<Action> {
+        return .none
+    }
+    
     var body: some Reducer<State, Action> {
         BindingReducer()
         
@@ -38,7 +43,6 @@ struct Todos: Reducer {
             case .binding:
                 return .none
             case let .delete(indexSet):
-                
                 return .none
             }
         }

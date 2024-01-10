@@ -149,6 +149,7 @@ struct AddTypeView: View {
                     )
                 } label: {
                     Text("중요도")
+                        .foregroundStyle(.white)
                 }
             }
         }

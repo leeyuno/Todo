@@ -45,8 +45,7 @@ struct AddTitleView: View {
                     store: self.typeStore
                 )
             } label: {
-                Text("중요도")
-                    .foregroundColor(.white)
+                Text("종류")
             }
         }
     }
