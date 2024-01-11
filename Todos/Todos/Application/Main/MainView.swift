@@ -8,11 +8,11 @@
 import ComposableArchitecture
 @preconcurrency import SwiftUI
 
-struct AppView: View {
-    let store: Store<Todos.State, Todos.Action>
-    @ObservedObject var viewStore: ViewStore<Todos.State, Todos.Action>
+struct MainView: View {
+    let store: Store<MainCore.State, MainCore.Action>
+    @ObservedObject var viewStore: ViewStore<MainCore.State, MainCore.Action>
     
-    init(store: Store<Todos.State, Todos.Action>) {
+    init(store: Store<MainCore.State, MainCore.Action>) {
         self.store = store
         self.viewStore = ViewStore(self.store) { $0 }
     }
@@ -33,7 +33,7 @@ struct AppView: View {
                     ForEach(viewStore.todos, id: \.id) { todo in
                         if !todo.isInvalidated && !todo.isFrozen {
                             NavigationLink {
-                                AddTitleView(store: titleStore)
+                                AddView(store: addStore)
                             } label: {
                                 TodoItem(todo)
                             }
@@ -45,7 +45,7 @@ struct AppView: View {
             .navigationTitle("Todos")
             .toolbar {
                 NavigationLink {
-                    AddTitleView(store: self.titleStore)
+                    AddView(store: self.addStore)
                 } label: {
                     Text("할일")
                 }
@@ -54,34 +54,36 @@ struct AppView: View {
     }
 }
 
-extension IdentifiedArray where ID == Todo.State.ID, Element == Todo.State {
-    static let mock: Self = [
-        Todo.State(
-            description: "Check Mail",
-            id: UUID(),
-            isComplete: false
-        ),
-        Todo.State(
-            description: "Buy Milk",
-            id: UUID(),
-            isComplete: false
-        ),
-        Todo.State(
-            description: "Call Mom",
-            id: UUID(),
-            isComplete: false
-        )
-    ]
-}
+//extension IdentifiedArray where ID == Todo.State.ID, Element == Todo.State {
+//    static let mock: Self = [
+//        Todo.State(
+//            description: "Check Mail",
+//            id: UUID(),
+//            isComplete: false
+//        ),
+//        Todo.State(
+//            description: "Buy Milk",
+//            id: UUID(),
+//            isComplete: false
+//        ),
+//        Todo.State(
+//            description: "Call Mom",
+//            id: UUID(),
+//            isComplete: false
+//        )
+//    ]
+//}
 
-extension AppView {
-    private var titleStore: Store<AddTitle.State, AddTitle.Action> {
+extension MainView {
+    private var addStore: Store<AddCore.State, AddCore.Action> {
         return store.scope(
-            state: { $0.titleState },
-            action: Todos.Action.addTodoButtonTapped
+            state: { $0.addState },
+            action: MainCore.Action.addTodoButtonTapped
         )
     }
 }
+
+
 
 //struct AppView_Proviews: PreviewProvider {
 //    static var previews: some View {

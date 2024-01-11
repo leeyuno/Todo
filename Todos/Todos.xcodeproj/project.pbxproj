@@ -8,26 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		4F0875192AF9D0DD003DB701 /* TodoCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0875182AF9D0DD003DB701 /* TodoCore.swift */; };
-		4F08751B2AF9D100003DB701 /* TodosCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F08751A2AF9D100003DB701 /* TodosCore.swift */; };
-		4F08751D2AF9D11A003DB701 /* AddTitleCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F08751C2AF9D11A003DB701 /* AddTitleCore.swift */; };
-		4F08751F2AF9D23C003DB701 /* AddTypeCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F08751E2AF9D23C003DB701 /* AddTypeCore.swift */; };
-		4F0875212AF9D24D003DB701 /* AddTimeCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0875202AF9D24D003DB701 /* AddTimeCore.swift */; };
+		4F08751B2AF9D100003DB701 /* MainCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F08751A2AF9D100003DB701 /* MainCore.swift */; };
 		4FE0DA122ADE0368003CC77A /* TodosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA112ADE0368003CC77A /* TodosApp.swift */; };
 		4FE0DA162ADE036E003CC77A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0DA152ADE036E003CC77A /* Assets.xcassets */; };
 		4FE0DA192ADE036E003CC77A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0DA182ADE036E003CC77A /* Preview Assets.xcassets */; };
 		4FE0DA232ADE036F003CC77A /* TodosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA222ADE036F003CC77A /* TodosTests.swift */; };
 		4FE0DA2D2ADE036F003CC77A /* TodosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA2C2ADE036F003CC77A /* TodosUITests.swift */; };
 		4FE0DA2F2ADE036F003CC77A /* TodosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA2E2ADE036F003CC77A /* TodosUITestsLaunchTests.swift */; };
-		4FE0DA3C2ADE0408003CC77A /* Todos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA3B2ADE0408003CC77A /* Todos.swift */; };
+		4FE0DA3C2ADE0408003CC77A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA3B2ADE0408003CC77A /* MainView.swift */; };
 		4FE0DA3E2ADE0410003CC77A /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA3D2ADE0410003CC77A /* Todo.swift */; };
 		4FE0DA412ADE0E3D003CC77A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4FE0DA402ADE0E3D003CC77A /* ComposableArchitecture */; };
 		4FE89B172AE261C700E481B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4FE89B162AE261C700E481B3 /* Realm */; };
 		4FE89B192AE261C700E481B3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4FE89B182AE261C700E481B3 /* RealmSwift */; };
 		4FE89B1B2AE263E700E481B3 /* TodoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE89B1A2AE263E700E481B3 /* TodoEntity.swift */; };
 		4FE89B1E2AE268A600E481B3 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE89B1D2AE268A600E481B3 /* Color+Extension.swift */; };
-		4FE89B202AE26C9E00E481B3 /* AddTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE89B1F2AE26C9E00E481B3 /* AddTitle.swift */; };
-		4FE89B222AE26CA700E481B3 /* AddType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE89B212AE26CA700E481B3 /* AddType.swift */; };
-		4FE89B242AE26CAE00E481B3 /* AddTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE89B232AE26CAE00E481B3 /* AddTime.swift */; };
+		7D9790F52B2C42C100C32849 /* NavigationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9790F42B2C42C100C32849 /* NavigationUtils.swift */; };
+		7D9FE9112B3BFB25001457AB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9FE9102B3BFB25001457AB /* Environment.swift */; };
+		7DA05F902B4E71C400B09520 /* AddCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA05F8F2B4E71C400B09520 /* AddCore.swift */; };
+		7DA05F922B4E71CE00B09520 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA05F912B4E71CE00B09520 /* AddView.swift */; };
+		7DA05F952B4E867200B09520 /* RealmClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA05F942B4E867200B09520 /* RealmClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,10 +48,7 @@
 
 /* Begin PBXFileReference section */
 		4F0875182AF9D0DD003DB701 /* TodoCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCore.swift; sourceTree = "<group>"; };
-		4F08751A2AF9D100003DB701 /* TodosCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosCore.swift; sourceTree = "<group>"; };
-		4F08751C2AF9D11A003DB701 /* AddTitleCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTitleCore.swift; sourceTree = "<group>"; };
-		4F08751E2AF9D23C003DB701 /* AddTypeCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeCore.swift; sourceTree = "<group>"; };
-		4F0875202AF9D24D003DB701 /* AddTimeCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeCore.swift; sourceTree = "<group>"; };
+		4F08751A2AF9D100003DB701 /* MainCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCore.swift; sourceTree = "<group>"; };
 		4FE0DA0E2ADE0368003CC77A /* Todos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE0DA112ADE0368003CC77A /* TodosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosApp.swift; sourceTree = "<group>"; };
 		4FE0DA152ADE036E003CC77A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,13 +58,15 @@
 		4FE0DA282ADE036F003CC77A /* TodosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE0DA2C2ADE036F003CC77A /* TodosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUITests.swift; sourceTree = "<group>"; };
 		4FE0DA2E2ADE036F003CC77A /* TodosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		4FE0DA3B2ADE0408003CC77A /* Todos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todos.swift; sourceTree = "<group>"; };
+		4FE0DA3B2ADE0408003CC77A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4FE0DA3D2ADE0410003CC77A /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		4FE89B1A2AE263E700E481B3 /* TodoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEntity.swift; sourceTree = "<group>"; };
 		4FE89B1D2AE268A600E481B3 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
-		4FE89B1F2AE26C9E00E481B3 /* AddTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTitle.swift; sourceTree = "<group>"; };
-		4FE89B212AE26CA700E481B3 /* AddType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddType.swift; sourceTree = "<group>"; };
-		4FE89B232AE26CAE00E481B3 /* AddTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTime.swift; sourceTree = "<group>"; };
+		7D9790F42B2C42C100C32849 /* NavigationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtils.swift; sourceTree = "<group>"; };
+		7D9FE9102B3BFB25001457AB /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		7DA05F8F2B4E71C400B09520 /* AddCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCore.swift; sourceTree = "<group>"; };
+		7DA05F912B4E71CE00B09520 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		7DA05F942B4E867200B09520 /* RealmClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,37 +100,10 @@
 		4F0875132AF9D099003DB701 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				4FE0DA3B2ADE0408003CC77A /* Todos.swift */,
-				4F08751A2AF9D100003DB701 /* TodosCore.swift */,
+				4FE0DA3B2ADE0408003CC77A /* MainView.swift */,
+				4F08751A2AF9D100003DB701 /* MainCore.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		4F0875142AF9D0A0003DB701 /* AddTitle */ = {
-			isa = PBXGroup;
-			children = (
-				4FE89B1F2AE26C9E00E481B3 /* AddTitle.swift */,
-				4F08751C2AF9D11A003DB701 /* AddTitleCore.swift */,
-			);
-			path = AddTitle;
-			sourceTree = "<group>";
-		};
-		4F0875152AF9D0A5003DB701 /* AddColor */ = {
-			isa = PBXGroup;
-			children = (
-				4FE89B212AE26CA700E481B3 /* AddType.swift */,
-				4F08751E2AF9D23C003DB701 /* AddTypeCore.swift */,
-			);
-			path = AddColor;
-			sourceTree = "<group>";
-		};
-		4F0875162AF9D0A8003DB701 /* AddTime */ = {
-			isa = PBXGroup;
-			children = (
-				4FE89B232AE26CAE00E481B3 /* AddTime.swift */,
-				4F0875202AF9D24D003DB701 /* AddTimeCore.swift */,
-			);
-			path = AddTime;
 			sourceTree = "<group>";
 		};
 		4F0875172AF9D0B7003DB701 /* Todo */ = {
@@ -167,16 +138,13 @@
 		4FE0DA102ADE0368003CC77A /* Todos */ = {
 			isa = PBXGroup;
 			children = (
+				7D9FE90F2B3BFB1C001457AB /* Utility */,
+				7D9FE90E2B3BFB0B001457AB /* Application */,
 				4FE89B1C2AE2689200E481B3 /* Extension */,
-				4F0875172AF9D0B7003DB701 /* Todo */,
-				4F0875132AF9D099003DB701 /* Main */,
-				4F0875142AF9D0A0003DB701 /* AddTitle */,
-				4F0875152AF9D0A5003DB701 /* AddColor */,
-				4F0875162AF9D0A8003DB701 /* AddTime */,
 				4FE0DA152ADE036E003CC77A /* Assets.xcassets */,
 				4FE0DA112ADE0368003CC77A /* TodosApp.swift */,
 				4FE0DA172ADE036E003CC77A /* Preview Content */,
-				4FE89B1A2AE263E700E481B3 /* TodoEntity.swift */,
+				7D9790F42B2C42C100C32849 /* NavigationUtils.swift */,
 			);
 			path = Todos;
 			sourceTree = "<group>";
@@ -212,6 +180,43 @@
 				4FE89B1D2AE268A600E481B3 /* Color+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7D9FE90E2B3BFB0B001457AB /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				7DA05F932B4E866400B09520 /* Realm */,
+				4F0875172AF9D0B7003DB701 /* Todo */,
+				4F0875132AF9D099003DB701 /* Main */,
+				7DA05F8E2B4E71AA00B09520 /* Add */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		7D9FE90F2B3BFB1C001457AB /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7D9FE9102B3BFB25001457AB /* Environment.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		7DA05F8E2B4E71AA00B09520 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				7DA05F912B4E71CE00B09520 /* AddView.swift */,
+				7DA05F8F2B4E71C400B09520 /* AddCore.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		7DA05F932B4E866400B09520 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				7DA05F942B4E867200B09520 /* RealmClient.swift */,
+				4FE89B1A2AE263E700E481B3 /* TodoEntity.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,18 +358,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F08751D2AF9D11A003DB701 /* AddTitleCore.swift in Sources */,
-				4FE89B242AE26CAE00E481B3 /* AddTime.swift in Sources */,
-				4F0875212AF9D24D003DB701 /* AddTimeCore.swift in Sources */,
 				4F0875192AF9D0DD003DB701 /* TodoCore.swift in Sources */,
-				4F08751B2AF9D100003DB701 /* TodosCore.swift in Sources */,
+				7D9FE9112B3BFB25001457AB /* Environment.swift in Sources */,
+				4F08751B2AF9D100003DB701 /* MainCore.swift in Sources */,
 				4FE89B1B2AE263E700E481B3 /* TodoEntity.swift in Sources */,
-				4FE89B222AE26CA700E481B3 /* AddType.swift in Sources */,
+				7DA05F952B4E867200B09520 /* RealmClient.swift in Sources */,
+				7DA05F922B4E71CE00B09520 /* AddView.swift in Sources */,
+				7D9790F52B2C42C100C32849 /* NavigationUtils.swift in Sources */,
 				4FE89B1E2AE268A600E481B3 /* Color+Extension.swift in Sources */,
+				7DA05F902B4E71C400B09520 /* AddCore.swift in Sources */,
 				4FE0DA122ADE0368003CC77A /* TodosApp.swift in Sources */,
-				4FE0DA3C2ADE0408003CC77A /* Todos.swift in Sources */,
-				4FE89B202AE26C9E00E481B3 /* AddTitle.swift in Sources */,
-				4F08751F2AF9D23C003DB701 /* AddTypeCore.swift in Sources */,
+				4FE0DA3C2ADE0408003CC77A /* MainView.swift in Sources */,
 				4FE0DA3E2ADE0410003CC77A /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,7 +536,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,7 +566,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

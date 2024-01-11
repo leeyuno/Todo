@@ -12,9 +12,9 @@ import SwiftUI
 struct TodosApp: App {
     var body: some Scene {
         WindowGroup {
-            AppView(
-                store: Store(initialState: Todos.State()) {
-                    Todos()._printChanges()
+            MainView(
+                store: Store(initialState: MainCore.State()) {
+                    MainCore()._printChanges()
                 }
             )
         }
