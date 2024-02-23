@@ -8,11 +8,11 @@
 import ComposableArchitecture
 @preconcurrency import SwiftUI
 
-struct MainView: View {
-    let store: Store<MainCore.State, MainCore.Action>
-    @ObservedObject var viewStore: ViewStore<MainCore.State, MainCore.Action>
+struct CalendarView: View {
+    let store: Store<CalendarCore.State, CalendarCore.Action>
+    @ObservedObject var viewStore: ViewStore<CalendarCore.State, CalendarCore.Action>
     
-    init(store: Store<MainCore.State, MainCore.Action>) {
+    init(store: Store<CalendarCore.State, CalendarCore.Action>) {
         self.store = store
         self.viewStore = ViewStore(self.store) { $0 }
     }
@@ -41,6 +41,13 @@ struct MainView: View {
                     }
                 }
                 .listStyle(.plain)
+                .refreshable {
+                    viewStore.send(.fetchAllTodos)
+                }
+            }
+            .onAppear {
+                print("onAppear")
+                viewStore.send(.fetchAllTodos)
             }
             .navigationTitle("Todos")
             .toolbar {
@@ -74,11 +81,11 @@ struct MainView: View {
 //    ]
 //}
 
-extension MainView {
+extension CalendarView {
     private var addStore: Store<AddCore.State, AddCore.Action> {
         return store.scope(
             state: { $0.addState },
-            action: MainCore.Action.addTodoButtonTapped
+            action: CalendarCore.Action.addTodoButtonTapped
         )
     }
 }
