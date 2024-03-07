@@ -30,13 +30,18 @@ extension DependencyValues {
 extension RealmClient: DependencyKey {
     static var liveValue = RealmClient(
         findAllTodo: {
-            let realm = try! Realm(configuration: .init(schemaVersion: 2))
-            let allTodo = realm.objects(TodoEntity.self).sorted(byKeyPath: "date")
-            var result = [TodoEntity]()
-            allTodo.forEach { todo in
-                result.append(todo)
+            do {
+                let realm = try Realm(configuration: .init(schemaVersion: 2))
+                let allTodo = realm.objects(TodoEntity.self).sorted(byKeyPath: "date")
+                var result = [TodoEntity]()
+                allTodo.forEach { todo in
+                    result.append(todo)
+                }
+                return result
+            } catch {
+                return []
             }
-            return result
+            
         },
         findTodo: { id in
             let realm = try! Realm(configuration: .init(schemaVersion: 2))

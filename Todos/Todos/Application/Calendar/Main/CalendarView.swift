@@ -19,43 +19,43 @@ struct CalendarView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                Picker("Filter", selection: viewStore.$filter.animation()) {
-                    ForEach(Filter.allCases, id: \.self) { filter in
-                        Text(filter.rawValue).tag(filter)
-                    }
+            List {
+                Section {
+                    
                 }
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
                 
-                
-                List {
+                Section {
                     ForEach(viewStore.todos, id: \.id) { todo in
-                        if !todo.isInvalidated && !todo.isFrozen {
-                            NavigationLink {
-                                AddView(store: addStore)
+                        NavigationLink {
+                            AddView(store: addStore)
+                        } label: {
+                            TodoItem(todo)
+                        }
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                viewStore.send(.delete(IndexSet(integer: 0)))
                             } label: {
-                                TodoItem(todo)
+                                Label("Delete", systemImage: "trash")
                             }
                         }
                     }
                 }
-                .listStyle(.plain)
-                .refreshable {
-                    viewStore.send(.fetchAllTodos)
-                }
+            }
+            .listStyle(.plain)
+            .refreshable {
+                viewStore.send(.fetchAllTodos)
             }
             .onAppear {
                 print("onAppear")
                 viewStore.send(.fetchAllTodos)
             }
-            .navigationTitle("Todos")
-            .toolbar {
-                NavigationLink {
-                    AddView(store: self.addStore)
-                } label: {
-                    Text("할일")
-                }
+        }
+        .navigationTitle("Calendar")
+        .toolbar {
+            NavigationLink {
+                AddView(store: self.addStore)
+            } label: {
+                Image(systemName: "plus")
             }
         }
     }

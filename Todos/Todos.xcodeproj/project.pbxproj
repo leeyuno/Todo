@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4F0875192AF9D0DD003DB701 /* TodoCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0875182AF9D0DD003DB701 /* TodoCore.swift */; };
-		4F08751B2AF9D100003DB701 /* MainCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F08751A2AF9D100003DB701 /* MainCore.swift */; };
+		4F08751B2AF9D100003DB701 /* CalendarCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F08751A2AF9D100003DB701 /* CalendarCore.swift */; };
 		4FE0DA122ADE0368003CC77A /* TodosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA112ADE0368003CC77A /* TodosApp.swift */; };
 		4FE0DA162ADE036E003CC77A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0DA152ADE036E003CC77A /* Assets.xcassets */; };
 		4FE0DA192ADE036E003CC77A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0DA182ADE036E003CC77A /* Preview Assets.xcassets */; };
 		4FE0DA232ADE036F003CC77A /* TodosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA222ADE036F003CC77A /* TodosTests.swift */; };
 		4FE0DA2D2ADE036F003CC77A /* TodosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA2C2ADE036F003CC77A /* TodosUITests.swift */; };
 		4FE0DA2F2ADE036F003CC77A /* TodosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA2E2ADE036F003CC77A /* TodosUITestsLaunchTests.swift */; };
-		4FE0DA3C2ADE0408003CC77A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA3B2ADE0408003CC77A /* MainView.swift */; };
+		4FE0DA3C2ADE0408003CC77A /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA3B2ADE0408003CC77A /* CalendarView.swift */; };
 		4FE0DA3E2ADE0410003CC77A /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0DA3D2ADE0410003CC77A /* Todo.swift */; };
 		4FE0DA412ADE0E3D003CC77A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4FE0DA402ADE0E3D003CC77A /* ComposableArchitecture */; };
 		4FE89B172AE261C700E481B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4FE89B162AE261C700E481B3 /* Realm */; };
@@ -27,6 +27,14 @@
 		7DA05F902B4E71C400B09520 /* AddCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA05F8F2B4E71C400B09520 /* AddCore.swift */; };
 		7DA05F922B4E71CE00B09520 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA05F912B4E71CE00B09520 /* AddView.swift */; };
 		7DA05F952B4E867200B09520 /* RealmClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA05F942B4E867200B09520 /* RealmClient.swift */; };
+		7DC9B91C2B88811E007EA442 /* TabCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9B91B2B88811E007EA442 /* TabCore.swift */; };
+		7DC9B91E2B888339007EA442 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9B91D2B888339007EA442 /* TabView.swift */; };
+		7DC9B9232B8888F7007EA442 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9B9222B8888F7007EA442 /* ChartView.swift */; };
+		7DC9B9252B888900007EA442 /* ChartCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9B9242B8888FF007EA442 /* ChartCore.swift */; };
+		7DD472742B997BE60064051B /* GOCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD472732B997BE60064051B /* GOCalendar.swift */; };
+		7DD472762B997BF70064051B /* GOCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD472752B997BF70064051B /* GOCore.swift */; };
+		7DD472792B9998600064051B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD472782B9998600064051B /* Date+Extension.swift */; };
+		7DD4727C2B99A9460064051B /* GOCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4727B2B99A9460064051B /* GOCalendarCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +56,7 @@
 
 /* Begin PBXFileReference section */
 		4F0875182AF9D0DD003DB701 /* TodoCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCore.swift; sourceTree = "<group>"; };
-		4F08751A2AF9D100003DB701 /* MainCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCore.swift; sourceTree = "<group>"; };
+		4F08751A2AF9D100003DB701 /* CalendarCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCore.swift; sourceTree = "<group>"; };
 		4FE0DA0E2ADE0368003CC77A /* Todos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE0DA112ADE0368003CC77A /* TodosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosApp.swift; sourceTree = "<group>"; };
 		4FE0DA152ADE036E003CC77A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,7 +66,7 @@
 		4FE0DA282ADE036F003CC77A /* TodosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE0DA2C2ADE036F003CC77A /* TodosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUITests.swift; sourceTree = "<group>"; };
 		4FE0DA2E2ADE036F003CC77A /* TodosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		4FE0DA3B2ADE0408003CC77A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4FE0DA3B2ADE0408003CC77A /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4FE0DA3D2ADE0410003CC77A /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		4FE89B1A2AE263E700E481B3 /* TodoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEntity.swift; sourceTree = "<group>"; };
 		4FE89B1D2AE268A600E481B3 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
@@ -67,6 +75,14 @@
 		7DA05F8F2B4E71C400B09520 /* AddCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCore.swift; sourceTree = "<group>"; };
 		7DA05F912B4E71CE00B09520 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		7DA05F942B4E867200B09520 /* RealmClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClient.swift; sourceTree = "<group>"; };
+		7DC9B91B2B88811E007EA442 /* TabCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCore.swift; sourceTree = "<group>"; };
+		7DC9B91D2B888339007EA442 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		7DC9B9222B8888F7007EA442 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		7DC9B9242B8888FF007EA442 /* ChartCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCore.swift; sourceTree = "<group>"; };
+		7DD472732B997BE60064051B /* GOCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOCalendar.swift; sourceTree = "<group>"; };
+		7DD472752B997BF70064051B /* GOCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOCore.swift; sourceTree = "<group>"; };
+		7DD472782B9998600064051B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		7DD4727B2B99A9460064051B /* GOCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOCalendarCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +116,8 @@
 		4F0875132AF9D099003DB701 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				4FE0DA3B2ADE0408003CC77A /* MainView.swift */,
-				4F08751A2AF9D100003DB701 /* MainCore.swift */,
+				4FE0DA3B2ADE0408003CC77A /* CalendarView.swift */,
+				4F08751A2AF9D100003DB701 /* CalendarCore.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -185,10 +201,12 @@
 		7D9FE90E2B3BFB0B001457AB /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				7DD472772B9998550064051B /* Extension */,
+				7DD472722B997BBC0064051B /* Custom */,
+				7DC9B9202B8888B7007EA442 /* Charts */,
+				7DC9B91F2B8888AD007EA442 /* Calendar */,
+				7DC9B9182B8880E3007EA442 /* TabView */,
 				7DA05F932B4E866400B09520 /* Realm */,
-				4F0875172AF9D0B7003DB701 /* Todo */,
-				4F0875132AF9D099003DB701 /* Main */,
-				7DA05F8E2B4E71AA00B09520 /* Add */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -217,6 +235,60 @@
 				4FE89B1A2AE263E700E481B3 /* TodoEntity.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		7DC9B9182B8880E3007EA442 /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				7DC9B91B2B88811E007EA442 /* TabCore.swift */,
+				7DC9B91D2B888339007EA442 /* TabView.swift */,
+			);
+			path = TabView;
+			sourceTree = "<group>";
+		};
+		7DC9B91F2B8888AD007EA442 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				4F0875132AF9D099003DB701 /* Main */,
+				4F0875172AF9D0B7003DB701 /* Todo */,
+				7DA05F8E2B4E71AA00B09520 /* Add */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		7DC9B9202B8888B7007EA442 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				7DC9B9212B8888E7007EA442 /* Main */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		7DC9B9212B8888E7007EA442 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7DC9B9222B8888F7007EA442 /* ChartView.swift */,
+				7DC9B9242B8888FF007EA442 /* ChartCore.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7DD472722B997BBC0064051B /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				7DD472732B997BE60064051B /* GOCalendar.swift */,
+				7DD472752B997BF70064051B /* GOCore.swift */,
+				7DD4727B2B99A9460064051B /* GOCalendarCell.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		7DD472772B9998550064051B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7DD472782B9998600064051B /* Date+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,16 +431,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0875192AF9D0DD003DB701 /* TodoCore.swift in Sources */,
+				7DD472742B997BE60064051B /* GOCalendar.swift in Sources */,
 				7D9FE9112B3BFB25001457AB /* Environment.swift in Sources */,
-				4F08751B2AF9D100003DB701 /* MainCore.swift in Sources */,
+				4F08751B2AF9D100003DB701 /* CalendarCore.swift in Sources */,
 				4FE89B1B2AE263E700E481B3 /* TodoEntity.swift in Sources */,
 				7DA05F952B4E867200B09520 /* RealmClient.swift in Sources */,
+				7DC9B9252B888900007EA442 /* ChartCore.swift in Sources */,
 				7DA05F922B4E71CE00B09520 /* AddView.swift in Sources */,
 				7D9790F52B2C42C100C32849 /* NavigationUtils.swift in Sources */,
 				4FE89B1E2AE268A600E481B3 /* Color+Extension.swift in Sources */,
+				7DC9B9232B8888F7007EA442 /* ChartView.swift in Sources */,
+				7DD4727C2B99A9460064051B /* GOCalendarCell.swift in Sources */,
 				7DA05F902B4E71C400B09520 /* AddCore.swift in Sources */,
 				4FE0DA122ADE0368003CC77A /* TodosApp.swift in Sources */,
-				4FE0DA3C2ADE0408003CC77A /* MainView.swift in Sources */,
+				4FE0DA3C2ADE0408003CC77A /* CalendarView.swift in Sources */,
+				7DD472762B997BF70064051B /* GOCore.swift in Sources */,
+				7DC9B91C2B88811E007EA442 /* TabCore.swift in Sources */,
+				7DC9B91E2B888339007EA442 /* TabView.swift in Sources */,
+				7DD472792B9998600064051B /* Date+Extension.swift in Sources */,
 				4FE0DA3E2ADE0410003CC77A /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

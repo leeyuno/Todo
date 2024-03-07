@@ -12,11 +12,12 @@ import SwiftUI
 struct TodosApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView(
-                store: Store(initialState: MainCore.State()) {
-                    MainCore()._printChanges()
-                }
-            )
+            MainTabView()
+//            MainView(
+//                store: Store(initialState: MainCore.State()) {
+//                    MainCore()._printChanges()
+//                }
+//            )
         }
     }
 }

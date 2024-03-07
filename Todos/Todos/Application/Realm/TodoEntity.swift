@@ -13,8 +13,12 @@ class TodoEntity: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String = ""
     @Persisted var date: Date = Date.now
-    @Persisted var color: String = "blue"
+    @Persisted var color: String = ""
     @Persisted var isComplete: Bool = false
+    @Persisted var daily: Bool = false
+    @Persisted var priority: String = ""
+    @Persisted var location: String = ""
+    @Persisted var alarm: Int = 0
 }
 
 enum ConstantColor: String {

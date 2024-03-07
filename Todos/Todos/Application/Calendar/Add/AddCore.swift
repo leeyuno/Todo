@@ -51,7 +51,7 @@ struct AddCore: Reducer {
         @BindingState var location: String = ""
         @BindingState var priority: String = ""
         @BindingState var alarm: String = ""
-        @BindingState var color: String = ""
+        @BindingState var color: String = "blue"
         @BindingState var daily: Bool = false
         
         @BindingState var isCompleted: Bool = false

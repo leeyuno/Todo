@@ -5,14 +5,23 @@
 //  Created by Hanna Shin's iMac on 2/23/24.
 //
 
-import SwiftUI
+import ComposableArchitecture
+@preconcurrency import SwiftUI
 
 struct ChartView: View {
+    let store: Store<ChartCore.State, ChartCore.Action>
+    @ObservedObject var viewStore: ViewStore<ChartCore.State, ChartCore.Action>
+    
+    init(store: Store<ChartCore.State, ChartCore.Action>) {
+        self.store = store
+        self.viewStore = ViewStore(self.store) { $0 }
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("여기에 차트")
     }
 }
 
-#Preview {
-    ChartView()
-}
+//#Preview {
+//    ChartView()
+//}

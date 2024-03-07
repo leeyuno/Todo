@@ -6,13 +6,63 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
-struct tabView: View {
+struct MainTabView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        //        NavigationStack {
+        //            TabView {
+        //                CalendarView(
+        //                    store: Store(initialState: CalendarCore.State()) {
+        //                        CalendarCore()
+        //                    }
+        //                )
+        //                .tabItem {
+        //                    Image(systemName: "calendar")
+        //                    Text("Calendar")
+        //                }
+        //
+        //                ChartView(
+        //                    store: Store(initialState: ChartCore.State()) {
+        //                        ChartCore()
+        //                    }
+        //                )
+        //                .tabItem {
+        //                    Image(systemName: "chart.pie")
+        //                    Text("Chart")
+        //                }
+        //            }
+        //        }
+        TabView {
+            NavigationStack {
+                CalendarView(
+                    store: Store(initialState: CalendarCore.State()) {
+                        CalendarCore()
+                    }
+                )
+            }
+            .tabItem {
+                Image(systemName: "calendar")
+                Text("Calendar")
+            }
+            
+            NavigationStack {
+                ChartView(
+                    store: Store(initialState: ChartCore.State()) {
+                        ChartCore()
+                    }
+                )
+            }
+            .tabItem {
+                Image(systemName: "chart.pie")
+                Text("Chart")
+            }
+            
+        }
     }
 }
 
 #Preview {
-    tabView()
+    MainTabView()
 }
+

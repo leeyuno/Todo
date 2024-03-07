@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
+import ComposableArchitecture
+
+//struct TabCore: Reducer {
+//    struct State: Equatable {
+//        
+//    }
+//}
