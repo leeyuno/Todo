@@ -9,27 +9,31 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TodoItem: View {
-    var todo: TodoEntity
+    var todo: [TodoEntity]
     
-    init(_ todo: TodoEntity) {
+    init(_ todo: [TodoEntity]) {
         self.todo = todo
     }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(todo.title)
-                    .font(.system(size: 20))
-                    .bold()
-                    .lineLimit(1)
-                Text(todo.date, style: .date)
-                    .font(.system(size: 16))
-                    .padding(.top, 12)
+//        List {
+            ForEach(todo, id: \.self) { todo in
+                HStack {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(todo.title)
+                            .font(.system(size: 20))
+                            .bold()
+                            .lineLimit(1)
+                        Text(todo.date, style: .date)
+                            .font(.system(size: 16))
+                            .padding(.top, 12)
+                    }
+                    Spacer()
+                }
+                .padding()
+                .background(Color(todo.color))
+                .cornerRadius(15)
             }
-            Spacer()
-        }
-        .padding()
-        .background(Color(todo.color))
-        .cornerRadius(15)
+//        }
     }
 }

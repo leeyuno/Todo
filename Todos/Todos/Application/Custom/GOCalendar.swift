@@ -7,61 +7,93 @@
 
 import SwiftUI
 
+struct GOCalendarItem: Codable {
+    var date: Date?     // cell 별로 실제 날짜
+    var title: String?      // cell에 표시할 day
+    var items: [String]?        // 등록된 할일들
+    var isCurrentMonth: Bool?       // 전달 or 다음 달 인지 체크
+}
+
 struct GOCalendar: View {
-    private func numberOfDays(date: Date) -> [Int] {
-        var calendar = Calendar.current
-        calendar.locale = Locale(identifier: "ko_KR")
-        let totalCount = calendar.range(of: .day, in: .month, for: date)?.count ?? 0
+    private func getCalendarItem(date: Date) -> [GOCalendarItem] {
+        var result = [GOCalendarItem]()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.month, .year], from: date)
+        
         let firstWeekDay = date.firstWeekDay
         let lastWeekDay = date.lastWeekDay
+
+        let range = calendar.range(of: .day, in: .month, for: date)
         
-        var result: [Int] = (1 ... totalCount).map { $0 }
-        
-        if firstWeekDay != 1 {
-            if let previousMonth = calendar.date(byAdding: .month, value: -1, to: date)?.endOfMonth {
-                if let day = calendar.dateComponents([.day], from: previousMonth).day {
-                    for i in 0 ..< firstWeekDay {
-                        result.insert(day - i, at: 0)
+
+        if let year = components.year, let month = components.month, let upperBound = range?.upperBound {
+            for i in 1 ..< upperBound {
+                let dateString = String(format: "\(year)-\(month)-%02d", i)
+                if let date2 = dateFormatter.date(from: dateString) {
+                    result.append(GOCalendarItem(date: date2, title: String(i), items: nil, isCurrentMonth: true))
+                }
+            }
+            
+            if firstWeekDay != 1 {
+                if let firstDay = date.startOfMonth {
+                    for i in 1 ..< firstWeekDay {
+                        let previousDay = firstDay.addingTimeInterval(-Double((86400 * i)))
+                        let day = calendar.dateComponents([.day], from: previousDay).day
+                        result.insert(GOCalendarItem(date: previousDay, title: String(day ?? 0), items: nil, isCurrentMonth: false), at: 0)
                     }
                 }
             }
             
-        }
-        
-        if lastWeekDay != 7 {
-            
-        }
-
-        return result
-    }
-    
-    private func startWeek(date: Date) -> Int {
-        var calendar = Calendar.current
-        calendar.locale = Locale(identifier: "ko_KR")
-        let components = calendar.dateComponents([.year, .month], from: date)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        if let year = components.year, let month = components.month {
-            let firstDate = "\(year)-\(month)-01"
-            if let d = dateFormatter.date(from: firstDate) {
-                if let weekday = calendar.dateComponents([.weekday], from: d).weekday {
-                    print(weekday)
-                    return weekday
+            if lastWeekDay != 7 {
+                if let endDate = date.endOfMonth {
+                    for i in 1 ..< 8 - lastWeekDay {
+                        let nextDay = endDate.addingTimeInterval(Double(86400 * i))
+                        let day = calendar.dateComponents([.day], from: nextDay).day
+                        result.append(GOCalendarItem(date: nextDay, title: String(day ?? 0), items: nil, isCurrentMonth: false))
+                    }
                 }
             }
         }
-            
-        return 0
+        
+        return result
+    }
+    
+    private func currentDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        
+        let date = Date()
+        return dateFormatter.string(from: date)
     }
     
     private let weeks: [String] = ["일", "월", "화", "수", "목", "금", "토"]
     
     var body: some View {
-        let numberOfDays = numberOfDays(date: Date())
-        let firstWeekday = startWeek(date: Date())
+        let items = getCalendarItem(date: Date())
+        LazyHStack(alignment: .center, spacing: 0) {
+            Button {
+                
+            } label: {
+                Image(systemName: "chevron.left")
+                    .frame(width: 50, height: 50)
+                    .padding()
+            }
+            
+            Text(currentDate())
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "chevron.right")
+                    .frame(width: 50, height: 50)
+                    .padding()
+            }
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         
         LazyVGrid(columns: Array(repeating: GridItem(), count: 7), content: {
             Section {
@@ -73,20 +105,23 @@ struct GOCalendar: View {
             .padding(.bottom, 30)
             
             Section {
-                ForEach(Array(zip(numberOfDays.indices, numberOfDays)), id: \.0) { index, day in
-                    GOCalendarCell(day: String(day), color: index >= firstWeekday ? Double(index).truncatingRemainder(dividingBy: 7.0) == 0 ? .red : Double(index + 1).truncatingRemainder(dividingBy: 7.0) == 0 ? .blue : .black : .gray)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 2).stroke(.blue, lineWidth: 1)
-//                        )
-                        .padding(.bottom, 25)
-//                    Text("\(day)")
-//                        .foregroundStyle(index >= firstWeekday ? Double(index).truncatingRemainder(dividingBy: 7.0) == 0 ? .red : Double(index + 1).truncatingRemainder(dividingBy: 7.0) == 0 ? .blue : .black : .gray)
-//                        .padding(.bottom, 25)
+                ForEach(Array(zip(items.indices, items)), id: \.0) { index, item in
+                    GOCalendarCell(
+                        day: item.title ?? "",
+                        color: item.isCurrentMonth == true ? Double(index).truncatingRemainder(dividingBy: 7.0) == 0 ? .red : Double(index + 1).truncatingRemainder(dividingBy: 7.0) == 0 ? .blue : .black : .gray,
+                        date: item.date ?? Date()
+                    )
+                    .padding(.bottom, 25)
+                    .onTapGesture {
+                        print(items[index].date)
+//                        print("\(index) : \(dd[index])")
+                    }
                 }
             }
         })
-//        .frame(width: .greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
         .padding()
+        
+        
     }
 }
 

@@ -95,17 +95,17 @@ struct AddCore: Reducer {
                 state.useDaily.toggle()
                 return .none
             case let .changeColor(color):
-                if color == .red {
-                    state.color = "red"
-                } else if color == .orange {
-                    state.color = "orange"
-                } else if color == .yellow {
-                    state.color = "yellow"
-                } else if color == .green {
-                    state.color = "green"
-                } else if color == .blue {
-                    state.color = "blue"
-                }
+//                if color == .red {
+//                    state.color = "red"
+//                } else if color == .orange {
+//                    state.color = "orange"
+//                } else if color == .yellow {
+//                    state.color = "yellow"
+//                } else if color == .green {
+//                    state.color = "green"
+//                } else if color == .blue {
+//                    state.color = "blue"
+//                }
                 return .none
             case .save:
                 var time = 0

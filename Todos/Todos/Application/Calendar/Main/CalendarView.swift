@@ -21,16 +21,24 @@ struct CalendarView: View {
         NavigationStack {
             List {
                 Section {
-                    
+                    GOCalendar()
                 }
                 
-                Section {
-                    ForEach(viewStore.todos, id: \.id) { todo in
-                        NavigationLink {
-                            AddView(store: addStore)
-                        } label: {
-                            TodoItem(todo)
-                        }
+                ForEach(Array(zip(viewStore.todoList.indices, viewStore.todoList)), id: \.0) { index, item in
+                    
+                    Section {
+                        TodoItem(item.todo ?? [])
+//                        NavigationLink {
+//                            AddView(store: addStore)
+//                        } label: {
+//                            
+//                        }
+//                        NavigationLink {
+//                            AddView(store: addStore)
+//                        } label: {
+//                            TodoItem(item.todo ?? [])
+////                                .frame(height: item.todo.count ?? 0 * 100)
+//                        }
                         .swipeActions {
                             Button(role: .destructive) {
                                 viewStore.send(.delete(IndexSet(integer: 0)))
@@ -38,6 +46,8 @@ struct CalendarView: View {
                                 Label("Delete", systemImage: "trash")
                             }
                         }
+                    } header: {
+                        Text(item.section ?? "")
                     }
                 }
             }
@@ -90,12 +100,23 @@ extension CalendarView {
     }
 }
 
-
-
-//struct AppView_Proviews: PreviewProvider {
-//    static var previews: some View {
-//        AppView(store: Store(initialState: Todos.State(todos: .mock), reducer: {
-//            Todos()
-//        }))
-//    }
-//}
+#Preview {
+    CalendarView(
+        store: Store(initialState: CalendarCore.State(
+            todos: [
+                TodoEntity(value: [
+                    "title": "운동",
+                    "date": Date(),
+                    "color": "Personal"
+                ]),
+                TodoEntity(value: [
+                    "title": "공부",
+                    "date": Date(),
+                    "color": "Personal"
+                ])
+            ]
+        )) {
+            CalendarCore()
+        }
+    )
+}

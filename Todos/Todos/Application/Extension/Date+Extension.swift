@@ -25,7 +25,8 @@ extension Date {
         let calendar = Calendar.current
         if let startDay = self.startOfMonth {
             if let startWeekDay = calendar.dateComponents([.weekday], from: startDay).weekday {
-                return startWeekDay == 1 ? 7 : startWeekDay - 1
+//                return startWeekDay == 1 ? 7 : startWeekDay - 1
+                return startWeekDay
             }
         }
         
@@ -36,7 +37,8 @@ extension Date {
         let calendar = Calendar.current
         if let startDay = self.endOfMonth {
             if let startWeekDay = calendar.dateComponents([.weekday], from: startDay).weekday {
-                return startWeekDay == 1 ? 7 : startWeekDay - 1
+//                return startWeekDay == 1 ? 7 : startWeekDay - 1
+                return startWeekDay
             }
         }
         

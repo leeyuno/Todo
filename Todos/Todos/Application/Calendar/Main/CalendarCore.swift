@@ -15,12 +15,19 @@ enum Filter: LocalizedStringKey, CaseIterable, Hashable {
     case monthly = "월별"
 }
 
+struct TodoList: Codable, Equatable {
+    var section: String?
+    var todo: [TodoEntity]?
+}
+
 struct CalendarCore: Reducer {
     struct State: Equatable {
         var addState = AddCore.State(id: UUID())
         
         @BindingState var filter: Filter = .daily
         var todos: [TodoEntity] = []
+        
+        var todoList: [TodoList] = []
         
         var filteredTodos: [TodoEntity] {
           switch filter {
@@ -51,7 +58,45 @@ struct CalendarCore: Reducer {
         Reduce { state, action in
             switch action {
             case .fetchAllTodos:
-                state.todos = realmClient.findAllTodo()
+                // FIXME: 임시 Mock
+                if let filePath = Bundle.main.path(forResource: "mock", ofType: "json") {
+                    if let jsonString = try? String(contentsOfFile: filePath) {
+                        if let data = jsonString.data(using: .utf8) {
+                            if let jsonData = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [[String: Any]] {
+                                let dateFormatter = DateFormatter()
+                                var date = [String]()
+                                var realmData = [TodoEntity]()
+                                for json in jsonData {
+                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                                    dateFormatter.locale = Locale(identifier: "ko_KR")
+                                    let todoDate = dateFormatter.date(from: json["date"] as! String)
+                                    var new = json
+                                    new.updateValue(todoDate ?? Date.now, forKey: "date")
+                                    date.append((json["date"] as! String).components(separatedBy: " ").first ?? "")
+                                    let realm = TodoEntity(value: new)
+                                    realmData.append(realm)
+                                }
+                                
+                                date = Array(Set(date))
+                                state.todos = realmData
+                                
+                                var list = [TodoList]()
+                                for d in date {
+                                    let data = realmData.filter {
+                                        let realmDate = $0.date
+                                        let dateString = dateFormatter.string(from: realmDate)
+                                        return dateString.hasPrefix(d)
+                                    }
+                                    
+                                    list.append(TodoList(section: d, todo: data))
+                                }
+                                print(list)
+                                state.todoList = list
+                            }
+                        }
+                    }
+                }
+//                state.todos = realmClient.findAllTodo()
                 return Effect.run { send in
                     await send.callAsFunction(.sortTodos)
                 }

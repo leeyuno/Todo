@@ -1,0 +1,33 @@
+[
+    {
+        "title": "출근",
+        "date": "2024-04-01 06:50",
+        "location": "회사",
+        "color": "Company"
+    },
+    {
+        "title": "회의",
+        "date": "2024-04-01 09:30",
+        "location": "회사",
+        "color": "Company"
+    },
+    {
+        "title": "당근",
+        "date": "2024-04-01 18:30",
+        "location": "구로역",
+        "color": "Personal"
+    },
+    {
+        "title": "운동",
+        "date": "2024-04-01 19:20",
+        "location": "체육관",
+        "color": "Personal"
+    },
+    {
+        "title": "약속",
+        "date": "2024-04-01 22:00",
+        "location": "강남역",
+        "color": "Personal"
+    }
+]
+ 

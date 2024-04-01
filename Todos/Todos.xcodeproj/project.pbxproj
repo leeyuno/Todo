@@ -31,6 +31,7 @@
 		7DC9B91E2B888339007EA442 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9B91D2B888339007EA442 /* TabView.swift */; };
 		7DC9B9232B8888F7007EA442 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9B9222B8888F7007EA442 /* ChartView.swift */; };
 		7DC9B9252B888900007EA442 /* ChartCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9B9242B8888FF007EA442 /* ChartCore.swift */; };
+		7DD067E32BBA82F80049D79F /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DD067E22BBA82F80049D79F /* mock.json */; };
 		7DD472742B997BE60064051B /* GOCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD472732B997BE60064051B /* GOCalendar.swift */; };
 		7DD472762B997BF70064051B /* GOCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD472752B997BF70064051B /* GOCore.swift */; };
 		7DD472792B9998600064051B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD472782B9998600064051B /* Date+Extension.swift */; };
@@ -79,6 +80,7 @@
 		7DC9B91D2B888339007EA442 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		7DC9B9222B8888F7007EA442 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		7DC9B9242B8888FF007EA442 /* ChartCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCore.swift; sourceTree = "<group>"; };
+		7DD067E22BBA82F80049D79F /* mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
 		7DD472732B997BE60064051B /* GOCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOCalendar.swift; sourceTree = "<group>"; };
 		7DD472752B997BF70064051B /* GOCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOCore.swift; sourceTree = "<group>"; };
 		7DD472782B9998600064051B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				7D9FE9102B3BFB25001457AB /* Environment.swift */,
+				7DD067E22BBA82F80049D79F /* mock.json */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 			files = (
 				4FE0DA192ADE036E003CC77A /* Preview Assets.xcassets in Resources */,
 				4FE0DA162ADE036E003CC77A /* Assets.xcassets in Resources */,
+				7DD067E32BBA82F80049D79F /* mock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
