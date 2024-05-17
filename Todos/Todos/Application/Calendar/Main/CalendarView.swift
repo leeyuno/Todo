@@ -19,46 +19,41 @@ struct CalendarView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    GOCalendar()
-                }
-                
-                ForEach(Array(zip(viewStore.todoList.indices, viewStore.todoList)), id: \.0) { index, item in
-                    
+            GeometryReader { geo in
+                List {
                     Section {
-                        TodoItem(item.todo ?? [])
-//                        NavigationLink {
-//                            AddView(store: addStore)
-//                        } label: {
-//                            
-//                        }
-//                        NavigationLink {
-//                            AddView(store: addStore)
-//                        } label: {
-//                            TodoItem(item.todo ?? [])
-////                                .frame(height: item.todo.count ?? 0 * 100)
-//                        }
-                        .swipeActions {
-                            Button(role: .destructive) {
-                                viewStore.send(.delete(IndexSet(integer: 0)))
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
+                        GOCalendar(store: self.goStore)
+                            .frame(width: geo.size.width, height: geo.size.width)
+                    }
+                    
+                    ForEach(Array(zip(viewStore.todoList.indices, viewStore.todoList)), id: \.0) { index, item in
+                        Section {
+                            TodoItem(item.todo ?? [])
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        viewStore.send(.delete(IndexSet(integer: 0)))
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
+                        } header: {
+                            Text(item.section ?? "")
                         }
-                    } header: {
-                        Text(item.section ?? "")
                     }
                 }
+                .listStyle(.plain)
+                .refreshable {
+                    viewStore.send(.fetchAllTodos)
+                }
+                .onAppear {
+                    print("onAppear")
+                    viewStore.send(.fetchAllTodos)
+                }
             }
-            .listStyle(.plain)
-            .refreshable {
-                viewStore.send(.fetchAllTodos)
-            }
-            .onAppear {
-                print("onAppear")
-                viewStore.send(.fetchAllTodos)
-            }
+            
+//            List {
+//
+//            }
         }
         .navigationTitle("Calendar")
         .toolbar {
@@ -71,27 +66,13 @@ struct CalendarView: View {
     }
 }
 
-//extension IdentifiedArray where ID == Todo.State.ID, Element == Todo.State {
-//    static let mock: Self = [
-//        Todo.State(
-//            description: "Check Mail",
-//            id: UUID(),
-//            isComplete: false
-//        ),
-//        Todo.State(
-//            description: "Buy Milk",
-//            id: UUID(),
-//            isComplete: false
-//        ),
-//        Todo.State(
-//            description: "Call Mom",
-//            id: UUID(),
-//            isComplete: false
-//        )
-//    ]
-//}
-
 extension CalendarView {
+    private var goStore: Store<GOCore.State, GOCore.Action> {
+        return store.scope(
+            state: { $0.goState },
+            action: CalendarCore.Action.goCalendar
+        )
+    }
     private var addStore: Store<AddCore.State, AddCore.Action> {
         return store.scope(
             state: { $0.addState },

@@ -23,6 +23,7 @@ struct TodoList: Codable, Equatable {
 struct CalendarCore: Reducer {
     struct State: Equatable {
         var addState = AddCore.State(id: UUID())
+        var goState = GOCore.State(date: Date())
         
         @BindingState var filter: Filter = .daily
         var todos: [TodoEntity] = []
@@ -39,11 +40,12 @@ struct CalendarCore: Reducer {
     }
     
     enum Action: BindableAction, Equatable, Sendable {
+        case binding(BindingAction<State>)
         case fetchAllTodos
         case sortTodos
         case addTodoButtonTapped(AddCore.Action)
-        case binding(BindingAction<State>)
         case delete(IndexSet)
+        case goCalendar(GOCore.Action)
     }
     
 //    @Dependency(\.numberFact) var numberFact
@@ -108,11 +110,17 @@ struct CalendarCore: Reducer {
                 return .none
             case let .delete(indexSet):
                 return .none
+            case .goCalendar:
+                return .none
             }
         }
         
         Scope(state: \.addState, action: /Action.addTodoButtonTapped) {
             AddCore()
+        }
+        
+        Scope(state: \.goState, action: /Action.goCalendar) {
+            GOCore()
         }
     }
 }
