@@ -16,17 +16,23 @@ struct GOCalendarCell: View {
     var items: [String] = []
     
     var body: some View {
+        
         VStack {
             Text(day)
                 .foregroundStyle(color)
+                .frame(height: 20)
+                .padding([.top], 8)
             
-//            LazyVGrid(columns: Array(repeating: GridItem(), count: 4), content: {
-//                ForEach(Array(zip(items.indices, items)), id: \.0) { index, color in
-//                    Circle()
-//                        .foregroundStyle(Color(color))
-//                }
-//            })
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 5, maximum: 5), spacing: 4), count: 4), content: {
+                ForEach(Array(zip(items.indices, items)), id: \.0) { index, color in
+                    Circle()
+                        .foregroundStyle(Color(color))
+                }
+            })
+            
+            Spacer()
         }
+        
 //        .border(isSelected ? Color.red : Color.clear, width: 1)
     }
 }

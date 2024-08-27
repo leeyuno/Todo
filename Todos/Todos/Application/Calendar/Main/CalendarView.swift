@@ -23,7 +23,8 @@ struct CalendarView: View {
                 List {
                     Section {
                         GOCalendar(store: self.goStore)
-                            .frame(width: geo.size.width, height: geo.size.width)
+                            .background(.orange)
+                            .frame(width: geo.size.width, height: 500)
                     }
                     
                     ForEach(Array(zip(viewStore.todoList.indices, viewStore.todoList)), id: \.0) { index, item in

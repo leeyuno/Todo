@@ -33,9 +33,12 @@ struct GOCore: Reducer {
             case .binding:
                 return .none
             case let .fetchCalendar(date):
-                state.currentDate = currentDate()
-                state.items = getCalendarItem(date: date)
                 
+                let list = getTodo()
+                state.currentDate = currentDate()
+                state.items = getCalendarItem(date: date, todo: list)
+                
+                print(getCalendarItem(date: date, todo: list))
                 if let firstIndex = state.items.firstIndex(where: { checkToday(date: $0.date) }) {
                     state.selectedDate = firstIndex
                 }
@@ -48,7 +51,7 @@ struct GOCore: Reducer {
                     if let previousDate = Calendar.current.date(byAdding: .month, value: -1, to: date) {
                         let date2 = dateFormatter.string(from: previousDate)
                         state.currentDate = date2
-                        state.items = getCalendarItem(date: previousDate)
+                        state.items = getCalendarItem(date: previousDate, todo: getTodo())
                     }
                 }
                 
@@ -61,7 +64,7 @@ struct GOCore: Reducer {
                     if let previousDate = Calendar.current.date(byAdding: .month, value: 1, to: date) {
                         let date2 = dateFormatter.string(from: previousDate)
                         state.currentDate = date2
-                        state.items = getCalendarItem(date: previousDate)
+                        state.items = getCalendarItem(date: previousDate, todo: getTodo())
                     }
                 }
                 return .none
@@ -71,6 +74,48 @@ struct GOCore: Reducer {
                 return .none
             }
         }
+    }
+    
+    private func getTodo() -> [TodoList] {
+        var list = [TodoList]()
+        // MARK: - 임시 Mock 데이터
+        if let filePath = Bundle.main.path(forResource: "mock", ofType: "json") {
+            if let jsonString = try? String(contentsOfFile: filePath) {
+                if let data = jsonString.data(using: .utf8) {
+                    if let jsonData = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [[String: Any]] {
+                        let dateFormatter = DateFormatter()
+                        var date = [String]()
+                        var realmData = [TodoEntity]()
+                        for json in jsonData {
+                            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                            dateFormatter.locale = Locale(identifier: "ko_KR")
+                            let todoDate = dateFormatter.date(from: json["date"] as! String)
+                            var new = json
+                            new.updateValue(todoDate ?? Date.now, forKey: "date")
+                            date.append((json["date"] as! String).components(separatedBy: " ").first ?? "")
+                            let realm = TodoEntity(value: new)
+                            realmData.append(realm)
+                        }
+                        
+                        date = Array(Set(date))
+                        
+                        
+                        for d in date {
+                            let data = realmData.filter {
+                                let realmDate = $0.date
+                                let dateString = dateFormatter.string(from: realmDate)
+                                return dateString.hasPrefix(d)
+                            }
+                            
+                            list.append(TodoList(section: d, todo: data))
+                        }
+                        return list
+                    }
+                }
+            }
+        }
+        
+        return []
     }
     
     private func checkToday(date: Date?) -> Bool {
@@ -83,11 +128,12 @@ struct GOCore: Reducer {
         return calendarDate == today
     }
     
-    private func getCalendarItem(date: Date) -> [GOCalendarItem] {
+    private func getCalendarItem(date: Date, todo: [TodoList]) -> [GOCalendarItem] {
         var result = [GOCalendarItem]()
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
 
         let calendar = Calendar.current
         let components = calendar.dateComponents([.month, .year], from: date)
@@ -126,6 +172,36 @@ struct GOCore: Reducer {
                 }
             }
         }
+        
+        return result.map { item in
+//            todo.forEach {
+//                print("///////")
+//                print(dateFormatter.date(from: $0.section ?? ""))
+//                print(item.date)
+//            }
+//            print(dateFormatter.date(from: $0.section ?? ""))
+            let filteredTodo = todo.filter({ dateFormatter.date(from: $0.section ?? "") == item.date })
+            var new = item
+            new.items = filteredTodo.compactMap{ $0.todo?.compactMap { $0.color } }.first
+            return new
+        }
+//        todo.forEach { t in
+//            if let date = dateFormatter.date(from: t.section ?? "") {
+//                let a = result.map {
+//                    var new = $0
+//                    
+//                    if new.date == date {
+//                        var filter = t.section?.filter { $0 }
+//                        print("\(date) \(t.todo?.compactMap { $0.color })")
+//                        new.items = t.todo?.compactMap { $0.color }
+//                        return new
+//                    }
+//                    
+//                    return new
+//                }
+//                result = a
+//            }
+//        }
         
         return result
     }

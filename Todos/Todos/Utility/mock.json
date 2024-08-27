@@ -1,32 +1,68 @@
 [
     {
+        "title": "과거",
+        "date": "2024-08-23 06:50",
+        "location": "회사",
+        "color": "Company"
+    },
+    {
         "title": "출근",
-        "date": "2024-04-01 06:50",
+        "date": "2024-08-23 06:50",
         "location": "회사",
         "color": "Company"
     },
     {
         "title": "회의",
-        "date": "2024-04-01 09:30",
+        "date": "2024-08-24 09:30",
         "location": "회사",
         "color": "Company"
     },
     {
         "title": "당근",
-        "date": "2024-04-01 18:30",
+        "date": "2024-08-24 18:30",
         "location": "구로역",
         "color": "Personal"
     },
     {
         "title": "운동",
-        "date": "2024-04-01 19:20",
+        "date": "2024-08-24 19:20",
         "location": "체육관",
         "color": "Personal"
     },
     {
         "title": "약속",
-        "date": "2024-04-01 22:00",
+        "date": "2024-08-25 22:00",
         "location": "강남역",
+        "color": "Personal"
+    },
+    {
+        "title": "출근",
+        "date": "2024-08-26 06:50",
+        "location": "회사",
+        "color": "Company"
+    },
+    {
+        "title": "미팅",
+        "date": "2024-08-26 11:30",
+        "location": "회사",
+        "color": "Company"
+    },
+    {
+        "title": "가족 행사",
+        "date": "2024-08-276 17:30",
+        "location": "본가",
+        "color": "Family"
+    },
+    {
+        "title": "쇼핑",
+        "date": "2024-08-27 10:20",
+        "location": "기흥 프리미엄 아울렛",
+        "color": "Personal"
+    },
+    {
+        "title": "모임",
+        "date": "2024-08-27 14:00",
+        "location": "수원역 스타벅스",
         "color": "Personal"
     }
 ]

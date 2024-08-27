@@ -13,6 +13,7 @@ struct GOCalendarItem: Codable, Equatable {
     var title: String?      // cell에 표시할 day
     var items: [String]?        // 등록된 할일들
     var isCurrentMonth: Bool?       // 전달 or 다음 달 인지 체크
+//    var badges: [Color]?
 }
 
 struct GOCalendar: View {
@@ -26,9 +27,8 @@ struct GOCalendar: View {
     
     var body: some View {
         GeometryReader { geo in
-            VStack {
+            VStack(alignment: .center, spacing: 0) {
                 HStack(alignment: .center, spacing: 0) {
-                    
                     Button {
     //                    viewStore.send(.previous)
                     } label: {
@@ -53,7 +53,8 @@ struct GOCalendar: View {
                     }
                     .padding()
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                .frame(width: geo.size.width, height: 50, alignment: .center)
+//                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
                 
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 35, maximum: 50)), count: 7), content: {
                     Section {
@@ -70,13 +71,13 @@ struct GOCalendar: View {
                                 day: item.title ?? "",
                                 color: item.isCurrentMonth == true ? Double(index).truncatingRemainder(dividingBy: 7.0) == 0 ? .red : Double(index + 1).truncatingRemainder(dividingBy: 7.0) == 0 ? .blue : .black : .gray,
                                 date: item.date ?? Date(),
-                                isSelected: index == viewStore.state.selectedDate
+                                isSelected: index == viewStore.state.selectedDate,
+                                items: item.items ?? []
                             )
                             .frame(width: geo.size.width / 7, height: geo.size.width / 7)
                             .border(index == viewStore.state.selectedDate ? Color.purple : Color.clear, width: 1.5)
                             .onTapGesture {
                                 viewStore.send(.selectedDate(index))
-                                print(viewStore.state.items[index].date)
                             }
                         }
                     }

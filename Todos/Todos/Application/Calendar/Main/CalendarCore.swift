@@ -92,7 +92,15 @@ struct CalendarCore: Reducer {
                                     
                                     list.append(TodoList(section: d, todo: data))
                                 }
-                                print(list)
+                                
+                                dateFormatter.dateFormat = "yyyy-MM-dd"
+                                // 오늘 이전 날짜는 리스트 표시 안되게
+                                list = list.filter { Calendar.current.dateComponents([.day], from:Date(), to: dateFormatter.date(from: $0.section ?? "") ?? Date()).day ?? 0 >= 0 }
+                                
+                                // 날짜순으로 정렬
+                                list = list.sorted(by: {
+                                    (dateFormatter.date(from: $0.section ?? "") ?? Date()).compare(dateFormatter.date(from: $1.section ?? "") ?? Date()) == .orderedAscending
+                                })
                                 state.todoList = list
                             }
                         }
