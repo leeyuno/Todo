@@ -1,10 +1,3 @@
-//
-//  AddCore.swift
-//  Todos
-//
-//  Created by Hanna Shin's iMac on 1/10/24.
-//
-
 import ComposableArchitecture
 import SwiftUI
 import RealmSwift
@@ -24,14 +17,10 @@ enum RemindTime: String {
     
     var time: Int {
         switch self {
-        case .hour:
-            return 60
-        case .halfHour:
-            return 30
-        case .quarterHour:
-            return 15
-        case .immediately:
-            return 1
+        case .hour: return 60
+        case .halfHour: return 30
+        case .quarterHour: return 15
+        case .immediately: return 1
         }
     }
 }
@@ -40,21 +29,21 @@ struct AddCore: Reducer {
     struct State: Equatable {
         let id: UUID
         
-        @BindingState var useLocation: Bool = false
-        @BindingState var usePriority: Bool = false
-        @BindingState var useColor: Bool = false
-        @BindingState var useAlarm: Bool = false
-        @BindingState var useDaily: Bool = false
+        @BindingState var useLocation = false
+        @BindingState var usePriority = false
+        @BindingState var useColor = false
+        @BindingState var useAlarm = false
+        @BindingState var useDaily = false
         
-        @BindingState var todo: String = ""
-        @BindingState var date: Date = .now
-        @BindingState var location: String = ""
-        @BindingState var priority: String = ""
-        @BindingState var alarm: String = ""
-        @BindingState var color: String = "blue"
-        @BindingState var daily: Bool = false
+        @BindingState var todo = ""
+        @BindingState var date = Date()
+        @BindingState var location = ""
+        @BindingState var priority = ""
+        @BindingState var alarm = ""
+        @BindingState var color = "blue"
+        @BindingState var daily = false
         
-        @BindingState var isCompleted: Bool = false
+        @BindingState var isCompleted = false
         
         var alert: AlertState<Action>?
     }
@@ -62,7 +51,7 @@ struct AddCore: Reducer {
     enum Action: BindableAction, Equatable, Sendable {
         case binding(BindingAction<State>)
         case useLocation
-        case usePrioity
+        case usePriority
         case useColor
         case useAlarm
         case useDaily
@@ -71,7 +60,8 @@ struct AddCore: Reducer {
         case disappear
     }
     
-    @Dependency(\.realmClient) var realmClient // RealmClient 의존성 주입
+    @Dependency(\.realmClient) var realmClient
+    
     var body: some Reducer<State, Action> {
         BindingReducer()
         
@@ -79,61 +69,50 @@ struct AddCore: Reducer {
             switch action {
             case .binding:
                 return .none
+            
             case .useLocation:
                 state.useLocation.toggle()
                 return .none
-            case .usePrioity:
+                
+            case .usePriority:
                 state.usePriority.toggle()
                 return .none
+                
             case .useColor:
                 state.useColor.toggle()
                 return .none
+                
             case .useAlarm:
                 state.useAlarm.toggle()
                 return .none
+                
             case .useDaily:
                 state.useDaily.toggle()
                 return .none
+                
             case let .changeColor(color):
-//                if color == .red {
-//                    state.color = "red"
-//                } else if color == .orange {
-//                    state.color = "orange"
-//                } else if color == .yellow {
-//                    state.color = "yellow"
-//                } else if color == .green {
-//                    state.color = "green"
-//                } else if color == .blue {
-//                    state.color = "blue"
-//                }
+                state.color = color.description
                 return .none
+                
             case .save:
-                var time = 0
-                if let reminder = RemindTime(rawValue: state.alarm) {
-                    time = reminder.time
-                }
+                let reminderTime = RemindTime(rawValue: state.alarm)?.time ?? 0
 
                 let todo = TodoEntity(value: [
                     "title": state.todo,
                     "date": state.date,
                     "location": state.location,
                     "priority": state.priority,
-                    "alarm": time,
+                    "alarm": reminderTime,
                     "color": state.color,
                     "daily": state.daily
                 ])
                 
                 realmClient.addTodo(todo)
-                
+                state.isCompleted = true
                 return .none
+                
             case .disappear:
-                state.todo = ""
-                state.date = Date()
-                state.location = ""
-                state.priority = ""
-                state.alarm = ""
-                state.color = "red"
-                state.daily = false
+                state = State(id: state.id) // 상태 초기화
                 return .none
             }
         }

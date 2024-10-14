@@ -1,10 +1,3 @@
-//
-//  tabView.swift
-//  Todos
-//
-//  Created by Hanna Shin's iMac on 2/23/24.
-//
-
 import SwiftUI
 import ComposableArchitecture
 
@@ -20,7 +13,7 @@ struct MainTabView: View {
             }
             .tabItem {
                 Image(systemName: "calendar")
-                Text("Calendar")
+                Text("Calendar") // Optionally use LocalizedStringKey for localization
             }
             
             NavigationStack {
@@ -32,9 +25,8 @@ struct MainTabView: View {
             }
             .tabItem {
                 Image(systemName: "chart.pie")
-                Text("Chart")
+                Text("Chart") // Optionally use LocalizedStringKey for localization
             }
-            
         }
     }
 }
@@ -42,4 +34,3 @@ struct MainTabView: View {
 #Preview {
     MainTabView()
 }
-

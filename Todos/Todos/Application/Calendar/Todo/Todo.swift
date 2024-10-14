@@ -1,10 +1,3 @@
-//
-//  Todo.swift
-//  Todos
-//
-//  Created by 이윤오 on 2023/10/17.
-//
-
 import ComposableArchitecture
 import SwiftUI
 
@@ -16,24 +9,24 @@ struct TodoItem: View {
     }
     
     var body: some View {
-//        List {
+        VStack(spacing: 10) {
             ForEach(todo, id: \.self) { todo in
                 HStack {
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text(todo.title)
                             .font(.system(size: 20))
                             .bold()
                             .lineLimit(1)
                         Text(todo.date, style: .date)
                             .font(.system(size: 16))
-                            .padding(.top, 12)
                     }
                     Spacer()
                 }
                 .padding()
                 .background(Color(todo.color))
-                .cornerRadius(15)
+                .cornerRadius(10)
             }
-//        }
+        }
+        .padding()  // 전체 뷰에 여유 공간을 추가
     }
 }

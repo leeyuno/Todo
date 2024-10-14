@@ -1,44 +1,43 @@
-//
-//  GOCalendarCell.swift
-//  Todos
-//
-//  Created by Hanna Shin's iMac on 3/7/24.
-//
-
 import SwiftUI
 
 struct GOCalendarCell: View {
     var day: String
     var color: Color
     var date: Date
-    @State var isSelected: Bool = false
-    
+    var isSelected: Bool = false
     var items: [String] = []
-    
+
     var body: some View {
-        
-        VStack {
+        VStack(spacing: 4) {
             Text(day)
-                .foregroundStyle(color)
+                .foregroundColor(color)
                 .frame(height: 20)
-                .padding([.top], 8)
-            
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 5, maximum: 5), spacing: 4), count: 4), content: {
-                ForEach(Array(zip(items.indices, items)), id: \.0) { index, color in
+                .padding(.top, 8)
+
+            // 일정 항목을 그리드 형태로 표시
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 5, maximum: 5), spacing: 4), count: 4)) {
+                ForEach(items.prefix(4), id: \.self) { item in
                     Circle()
-                        .foregroundStyle(Color(color))
+                        .frame(width: 5, height: 5)
+                        .foregroundStyle(Color(item))
                 }
-            })
-            
+            }
+
             Spacer()
         }
-        
-//        .border(isSelected ? Color.red : Color.clear, width: 1)
+        .padding(4)
+        .background(isSelected ? Color.purple.opacity(0.2) : Color.clear)
+        .cornerRadius(8)
     }
 }
 
-//#Preview {
-//    GOCalendarCell(day: "1", color: .black, date: Date(), items: ["Company", "Company", "Family", "Etc", "Personal", "Company"])
-//        .frame(width: 50, height: 50)
-//}
-
+#Preview {
+    GOCalendarCell(
+        day: "1",
+        color: .black,
+        date: Date(),
+        isSelected: true,
+        items: ["red", "blue", "green", "yellow"]
+    )
+    .frame(width: 50, height: 50)
+}

@@ -1,38 +1,31 @@
-//
-//  Todos.swift
-//  Todos
-//
-//  Created by 이윤오 on 2023/10/17.
-//
-
 import ComposableArchitecture
-@preconcurrency import SwiftUI
+import SwiftUI
 
 struct CalendarView: View {
     let store: Store<CalendarCore.State, CalendarCore.Action>
     @ObservedObject var viewStore: ViewStore<CalendarCore.State, CalendarCore.Action>
-    
+
     init(store: Store<CalendarCore.State, CalendarCore.Action>) {
         self.store = store
         self.viewStore = ViewStore(self.store) { $0 }
     }
-    
+
     var body: some View {
         NavigationStack {
             GeometryReader { geo in
                 List {
                     Section {
-                        GOCalendar(store: self.goStore)
-                            .background(.orange)
+                        GOCalendar(store: goStore)
+                            .background(Color.orange)
                             .frame(width: geo.size.width, height: 500)
                     }
-                    
+
                     ForEach(Array(zip(viewStore.todoList.indices, viewStore.todoList)), id: \.0) { index, item in
                         Section {
                             TodoItem(item.todo ?? [])
                                 .swipeActions {
                                     Button(role: .destructive) {
-                                        viewStore.send(.delete(IndexSet(integer: 0)))
+                                        viewStore.send(.delete(IndexSet(integer: index)))
                                     } label: {
                                         Label("Delete", systemImage: "trash")
                                     }
@@ -47,20 +40,13 @@ struct CalendarView: View {
                     viewStore.send(.fetchAllTodos)
                 }
                 .onAppear {
-                    print("onAppear")
                     viewStore.send(.fetchAllTodos)
                 }
             }
-            
-//            List {
-//
-//            }
         }
         .navigationTitle("Calendar")
         .toolbar {
-            NavigationLink {
-                AddView(store: self.addStore)
-            } label: {
+            NavigationLink(destination: AddView(store: addStore)) {
                 Image(systemName: "plus")
             }
         }
@@ -69,14 +55,15 @@ struct CalendarView: View {
 
 extension CalendarView {
     private var goStore: Store<GOCore.State, GOCore.Action> {
-        return store.scope(
-            state: { $0.goState },
+        store.scope(
+            state: \.goState,
             action: CalendarCore.Action.goCalendar
         )
     }
+    
     private var addStore: Store<AddCore.State, AddCore.Action> {
-        return store.scope(
-            state: { $0.addState },
+        store.scope(
+            state: \.addState,
             action: CalendarCore.Action.addTodoButtonTapped
         )
     }
@@ -84,21 +71,22 @@ extension CalendarView {
 
 #Preview {
     CalendarView(
-        store: Store(initialState: CalendarCore.State(
-            todos: [
-                TodoEntity(value: [
-                    "title": "운동",
-                    "date": Date(),
-                    "color": "Personal"
-                ]),
-                TodoEntity(value: [
-                    "title": "공부",
-                    "date": Date(),
-                    "color": "Personal"
-                ])
-            ]
-        )) {
-            CalendarCore()
-        }
+        store: Store(
+            initialState: CalendarCore.State(
+                todos: [
+                    TodoEntity(value: [
+                        "title": "운동",
+                        "date": Date(),
+                        "color": "Personal"
+                    ]),
+                    TodoEntity(value: [
+                        "title": "공부",
+                        "date": Date(),
+                        "color": "Personal"
+                    ])
+                ]
+            ),
+            reducer: CalendarCore()
+        )
     )
 }
